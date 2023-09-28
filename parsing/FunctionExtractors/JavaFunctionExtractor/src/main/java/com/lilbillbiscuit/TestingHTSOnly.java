@@ -12,7 +12,7 @@ public class TestingHTSOnly {
     public static void main(String[] args) throws IOException {
         ArrayList<MethodObj> methods = new ArrayList<>();
         ArrayList<JSONObject> json = new ArrayList<>();
-        Main2.parseRepo("/Users/billyqian/temprepos/htsjdk", methods, json);
+        Main2.parseRepo("/Users/User/temprepos/htsjdk", methods, json);
         System.out.println("Finished Execution");
         System.out.println("Total Methods: " + json.size());
 
