@@ -12,8 +12,8 @@ import java.util.HashMap;
 
 public class Testing {
     public static void main(String[] args) throws IOException {
-        String test_filename = "/Users/billyqian/temprepos/htsjdk/src/main/java/htsjdk/samtools/util/SamRecordTrackingBuffer.java";
-        String test_basepath = "/Users/billyqian/temprepos/htsjdk/src/main/java/";
+        String test_filename = "/Users/User/temprepos/htsjdk/src/main/java/htsjdk/samtools/util/SamRecordTrackingBuffer.java";
+        String test_basepath = "/Users/User/temprepos/htsjdk/src/main/java/";
         File file = new File(test_filename);
         ImportData importObj = ImportData.createImportObj(file.getPath());
 //        System.out.println(importObj.toJSONObject().toString(4));
