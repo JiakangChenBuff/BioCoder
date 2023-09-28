@@ -2,7 +2,7 @@
 
 # Use the following command in EC2 user data to initialize the VM for the first time.
 # #!/bin/bash
-  # curl -s http://gersteincodegenprod.s3.amazonaws.com/init_build_environment.sh | sudo bash
+  # curl -s http://labcodegenprod.s3.amazonaws.com/init_build_environment.sh | sudo bash
 
 # This script is used to initialize the VM for the first time.
 sudo apt update
@@ -38,6 +38,6 @@ sudo -u ubuntu rm -rf /home/ubuntu/awscliv2.zip /home/ubuntu/aws
 sudo -u ubuntu aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/i5g0m1f6
 
 # download build files
-sudo -u ubuntu wget https://gersteincodegenprod.s3.amazonaws.com/build_docker_image.py -O /home/ubuntu/build_docker_image.py
-sudo -u ubuntu wget https://gersteincodegenprod.s3.amazonaws.com/build_image.sh -O /home/ubuntu/build_image.sh
-sudo -u ubuntu wget https://gersteincodegenprod.s3.amazonaws.com/build_data.yaml -O /home/ubuntu/build_data.yaml
+sudo -u ubuntu wget https://labcodegenprod.s3.amazonaws.com/build_docker_image.py -O /home/ubuntu/build_docker_image.py
+sudo -u ubuntu wget https://labcodegenprod.s3.amazonaws.com/build_image.sh -O /home/ubuntu/build_image.sh
+sudo -u ubuntu wget https://labcodegenprod.s3.amazonaws.com/build_data.yaml -O /home/ubuntu/build_data.yaml

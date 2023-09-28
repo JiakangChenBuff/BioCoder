@@ -11,7 +11,7 @@ def lambda_handler(event, context):
     if path == '/get':
         # not finished and not in progress
         response = client.scan(
-            TableName="gerstein_data",
+            TableName="lab_data",
             FilterExpression="finished = :false AND inprogress = :false",
             ExpressionAttributeValues={
                 ":false": {
@@ -25,7 +25,7 @@ def lambda_handler(event, context):
         if len(items) == 0:
             # reset all inprogress to false, only if they are not also finished
             response = client.scan(
-                TableName="gerstein_data",
+                TableName="lab_data",
                 FilterExpression="inprogress = :true AND finished = :false",
                 ExpressionAttributeValues={
                     ":false": {
@@ -38,7 +38,7 @@ def lambda_handler(event, context):
             )
             for item in response["Items"]:
                 client.update_item(
-                    TableName="gerstein_data",
+                    TableName="lab_data",
                     Key={
                         "test_case_id": {
                             "S": item["test_case_id"]["S"]
@@ -53,7 +53,7 @@ def lambda_handler(event, context):
                 )
 
             response = client.scan(
-                TableName="gerstein_data",
+                TableName="lab_data",
                 FilterExpression="finished = :false AND inprogress = :false",
                 ExpressionAttributeValues={
                     ":false": {
@@ -75,7 +75,7 @@ def lambda_handler(event, context):
         json_str = item['body']["S"]
 
         client.update_item(
-            TableName="gerstein_data",
+            TableName="lab_data",
             Key={
                 "test_case_id": {
                     "S": item["test_case_id"]["S"]
@@ -102,7 +102,7 @@ def lambda_handler(event, context):
         print(id_int)
         # update the item to be finished
         response = client.update_item(
-            TableName="gerstein_data",
+            TableName="lab_data",
             Key={
                 "test_case_id": {
                     "S": id_int
@@ -139,7 +139,7 @@ def lambda_handler(event, context):
 
         # look for the test case id first
         response = client.get_item(
-            TableName="gerstein_data",
+            TableName="lab_data",
             Key={
                 "test_case_id": {
                     "S": json_obj["test_case_id"]
@@ -153,7 +153,7 @@ def lambda_handler(event, context):
             }
 
         response2 = client.put_item(
-            TableName="gerstein_data",
+            TableName="lab_data",
             Item={
                 "test_case_id": {
                     "S": json_obj["test_case_id"]
@@ -181,7 +181,7 @@ def lambda_handler(event, context):
         last_evaluated_key = None
         while True:
             response = client.scan(
-                TableName="gerstein_data",
+                TableName="lab_data",
                 ExclusiveStartKey=last_evaluated_key
             )
             for item in response["Items"]:
@@ -198,7 +198,7 @@ def lambda_handler(event, context):
             'body': json.dumps(json_obj)
         }
     # elif path=="/reset":
-    #     truncateTable("gerstein_data")
+    #     truncateTable("lab_data")
     #     return {
     #         'statusCode': 200,
     #         'body': "successful"

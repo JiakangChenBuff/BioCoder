@@ -11,14 +11,14 @@ s3 = boto3.client('s3')
 # check if TESTING is set
 prod = not ("TESTING" in os.environ)
 if prod:
-    queue_url = "https://sqs.us-east-1.amazonaws.com/AWS_ACCOUNT_ID/gerstein_queue_standard"
-    queue_url_inprogress = "https://sqs.us-east-1.amazonaws.com/AWS_ACCOUNT_ID/gerstein_queue_standard_inprogress"
-    dynamodb_table = "gerstein_data"
+    queue_url = "https://sqs.us-east-1.amazonaws.com/AWS_ACCOUNT_ID/lab_queue_standard"
+    queue_url_inprogress = "https://sqs.us-east-1.amazonaws.com/AWS_ACCOUNT_ID/lab_queue_standard_inprogress"
+    dynamodb_table = "lab_data"
 else:
     # use test queues
-    queue_url = "https://sqs.us-east-1.amazonaws.com/AWS_ACCOUNT_ID/gerstein_queue_test.fifo"
-    queue_url_inprogress = "https://sqs.us-east-1.amazonaws.com/AWS_ACCOUNT_ID/gerstein_queue_inprogress_test.fifo"
-    dynamodb_table = "gerstein_data_test"
+    queue_url = "https://sqs.us-east-1.amazonaws.com/AWS_ACCOUNT_ID/lab_queue_test.fifo"
+    queue_url_inprogress = "https://sqs.us-east-1.amazonaws.com/AWS_ACCOUNT_ID/lab_queue_inprogress_test.fifo"
+    dynamodb_table = "lab_data_test"
 
 def generate_random_string():
     return base64.b64encode(hashlib.sha256(os.urandom(256)).digest()).decode('utf-8')
@@ -87,7 +87,7 @@ def lambda_handler(event, context):
         sqs.send_message(
             QueueUrl=queue_url_inprogress,
             MessageBody=json_str,
-            # MessageGroupId="gerstein_queue_inprogess",
+            # MessageGroupId="lab_queue_inprogess",
             MessageAttributes={
                 "inprogress": {
                     "DataType": "String",
@@ -185,7 +185,7 @@ def lambda_handler(event, context):
         # Add item to SQS without the inprogress attribute
         response = sqs.send_message(
             QueueUrl=queue_url,
-            # MessageGroupId="gerstein_queue",
+            # MessageGroupId="lab_queue",
             MessageAttributes={
                 "notinprogress": {
                     "DataType": "String",
@@ -228,7 +228,7 @@ def lambda_handler(event, context):
                 "statusCode": 404,
                 "body": "password not provided"
             }
-        if param["password"] != "gerstein!@#$%":
+        if param["password"] != "lab!@#$%":
             return {
                 "statusCode": 404,
                 "body": "incorrect password"
@@ -271,7 +271,7 @@ def lambda_handler(event, context):
         items = [x for x in items if x["finished"] == True]	
         str1 = generate_random_string()	
         key1 = "results-"+suffix + ".json"	
-        s3.put_object(Bucket="gersteincodegenprod", Key=key1, Body=json.dumps(items).encode('utf-8'))	
+        s3.put_object(Bucket="labcodegenprod", Key=key1, Body=json.dumps(items).encode('utf-8'))	
         	
         return {	
             "statusCode": 200,	
@@ -287,7 +287,7 @@ def lambda_handler(event, context):
                 "statusCode": 404,
                 "body": "password not provided"
             }
-        if param["password"] != "gerstein!@#$%":
+        if param["password"] != "lab!@#$%":
             return {
                 "statusCode": 404,
                 "body": "incorrect password"
@@ -356,7 +356,7 @@ def lambda_handler(event, context):
 
         # upload to s3
         s3.put_object(
-            Bucket="gersteincodegenprod",
+            Bucket="labcodegenprod",
             Key=s3_filename,
             Body=data["log"]
         )
@@ -372,7 +372,7 @@ def lambda_handler(event, context):
                 "statusCode": 404,
                 "body": "password not provided"
             }
-        if param["password"] != "gerstein!@#$%":
+        if param["password"] != "lab!@#$%":
             return {
                 "statusCode": 404,
                 "body": "incorrect password"
@@ -464,7 +464,7 @@ def add_unfinished_to_queue():
         # add to queue
         sqs.send_message(
             QueueUrl=queue_url,
-            # MessageGroupId="gerstein_queue",
+            # MessageGroupId="lab_queue",
             MessageAttributes={
                 "notinprogress": {
                     "DataType": "String",

@@ -1,4 +1,4 @@
-repo_name: lilbillybiscuit/323tester
+repo_name: liluserbiscuit/323tester
 
 global_environment:
   - "RANDOM_ENV=1"
@@ -12,16 +12,16 @@ pre_commands:
 
   - name: "Download requirements"
     commands:
-      - wget https://gersteincodegenprod.s3.amazonaws.com/general/requirements.txt
+      - wget https://labcodegenprod.s3.amazonaws.com/general/requirements.txt
       - mkdir -p /home/ubuntu/CodeGen
       - cd /home/ubuntu/CodeGen/
-      - wget https://gersteincodegenprod.s3.amazonaws.com/packages.zip      
+      - wget https://labcodegenprod.s3.amazonaws.com/packages.zip      
       - unzip packages.zip
 
   - name: "Download fuzzer"
     commands:
       - cd /home/ubuntu/
-      - wget https://gersteincodegenprod.s3.amazonaws.com/fuzzer/run_java.sh
+      - wget https://labcodegenprod.s3.amazonaws.com/fuzzer/run_java.sh
       - chmod +x run_java.sh
   
   - name: "Pip install requirements"

@@ -13,11 +13,11 @@ import docker
 # afdfadf setting up the environment
 if "PROD" in os.environ:
     baseUrl = "https://fhdsxjdwjuo4chghz7mlaw2cju0ppwfx.lambda-url.us-east-1.on.aws/"
-    bucket = "gersteincodegenprod"
+    bucket = "labcodegenprod"
     ecr_repo = "passatkrunner"
 elif "TESTING" in os.environ:
     baseUrl="https://wnn2rjzzw2nkqj6yfbbp5igfmy0yxemy.lambda-url.us-east-1.on.aws"
-    bucket = "gersteincodegentest"
+    bucket = "labcodegentest"
     ecr_repo = "passatkrunnertest"
 else:
     raise Exception("No environment variable set")
@@ -70,7 +70,7 @@ def get_data():
 
 # ====================== VERSION 2 ======================
 # def run_docker(detach=True):
-#     repo_name = "lilbillybiscuit_323tester"
+#     repo_name = "User_323tester"
 #     docker_image_name = docker_base_url + "/" + ecr_repo+":"+repo_name
 #     environ_type_command = "TESTING=true" if "TESTING" in os.environ else "PROD=true"
 #     command_sequence = ["docker", "run", "-d", "-e", environ_type_command, "--network=host", "-it", "--cpus=1",  docker_image_name]
@@ -83,7 +83,7 @@ def get_data():
 # ====================== VERSION 3 ======================
 
 def run_docker(detach=True):
-    repo_name = "lilbillybiscuit_323tester"
+    repo_name = "User_323tester"
     docker_image_name = docker_base_url + "/" + ecr_repo + ":" + repo_name
     environ_type = "TESTING" if "TESTING" in os.environ else "PROD"
     environment = {environ_type: "true"}

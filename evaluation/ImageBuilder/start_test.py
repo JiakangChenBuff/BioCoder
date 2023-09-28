@@ -11,16 +11,16 @@ import base64
 # afdfadf setting up the environment
 if "TESTING" in os.environ:
     baseUrl = "https://fhdsxjdwjuo4chghz7mlaw2cju0ppwfx.lambda-url.us-east-1.on.aws"
-    bucket = "gersteincodegentest"
+    bucket = "labcodegentest"
     ecr_repo = "passatkrunnertest"
 elif "PROD" in os.environ:
     baseUrl="https://wnn2rjzzw2nkqj6yfbbp5igfmy0yxemy.lambda-url.us-east-1.on.aws"
-    bucket = "gersteincodegenprod"
+    bucket = "labcodegenprod"
     ecr_repo = "passatkrunner"
 else:
     raise Exception("No environment variable set")
 
-s3Url = "http://gersteincodegenprod.s3-website-us-east-1.amazonaws.com"
+s3Url = "http://labcodegenprod.s3-website-us-east-1.amazonaws.com"
 
 try:
     from fuzzer_tester import FuzzerTester

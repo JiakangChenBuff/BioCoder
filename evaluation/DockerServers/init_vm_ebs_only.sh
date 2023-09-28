@@ -4,7 +4,7 @@
 
 # Use the following command in EC2 user data to initialize the VM for the first time.
 # #!/bin/bash
-# curl -s http://gersteincodegenprod.s3.amazonaws.com/init_vm_ebs_only.sh | sudo bash
+# curl -s http://labcodegenprod.s3.amazonaws.com/init_vm_ebs_only.sh | sudo bash
 
 # This script is used to initialize the VM for the first time.
 sudo apt update
@@ -30,7 +30,7 @@ sudo usermod -aG docker ubuntu
 
 # HTSGET-specific
 # cd /home/ubuntu/ || exit
-# sudo -u ubuntu wget http://gersteincodegenprod.s3.amazonaws.com/repos/samtools,htsjdk.zip -O htsjdk.zip
+# sudo -u ubuntu wget http://labcodegenprod.s3.amazonaws.com/repos/samtools,htsjdk.zip -O htsjdk.zip
 # sudo -u ubuntu unzip htsjdk.zip
 # #sudo -u ubuntu git clone https://github.com/samtools/htsjdk.git
 # #cd htsjdk || exit
@@ -58,7 +58,7 @@ sudo -u ubuntu pip3 install bs4 requests pyyaml docker
 cd /home/ubuntu || exit
 #sudo -u ubuntu wget https://storage.lilbillbiscuit.com/start_test.py
 #sudo -u ubuntu wget https://storage.lilbillbiscuit.com/Dockerfile_Generalized -O Dockerfile
-sudo -u ubuntu wget https://gersteincodegenprod.s3.amazonaws.com/docker_runner.py
+sudo -u ubuntu wget https://labcodegenprod.s3.amazonaws.com/docker_runner.py
 #sudo -u ubuntu docker build -t htsjdktest .
 
 # get number of cores in the VM

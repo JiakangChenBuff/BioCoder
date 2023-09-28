@@ -10,10 +10,10 @@ import yaml
 # afdfadf setting up the environment
 if "TESTING" in os.environ:
     baseUrl = "https://fhdsxjdwjuo4chghz7mlaw2cju0ppwfx.lambda-url.us-east-1.on.aws/"
-    bucket = "gersteincodegentest"
+    bucket = "labcodegentest"
 elif "PROD" in os.environ:
     baseUrl="https://wnn2rjzzw2nkqj6yfbbp5igfmy0yxemy.lambda-url.us-east-1.on.aws"
-    bucket = "gersteincodegenprod"
+    bucket = "labcodegenprod"
 else:
     raise Exception("No environment variable set")
 
@@ -179,7 +179,7 @@ s3.Bucket(bucket).put_object(Key=f"outputs/{repo_name}.json", Body=json.dumps(js
 print("JSON object uploaded to S3")
 
 # Upload the zipped archive to S3
-# s3.Bucket('gersteincodegenprod').upload_file(f"{repo_name_escaped}.zip", f"repos/{repo_name_escaped}.zip")
+# s3.Bucket('labcodegenprod').upload_file(f"{repo_name_escaped}.zip", f"repos/{repo_name_escaped}.zip")
 # print("Zip archive uploaded to S3")
 
 print("REPO_NAME: ", repo_name.replace("/", "_")) # used to return the tag for the docker image

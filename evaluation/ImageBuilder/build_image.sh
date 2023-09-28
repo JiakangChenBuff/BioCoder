@@ -6,12 +6,12 @@
 if [[ $1 == "--prod" ]]; then
     echo "prod flag found"
     IMAGE_NAME="passatkrunner"
-    S3_BUCKET_NAME="gersteincodegenprod"
+    S3_BUCKET_NAME="labcodegenprod"
     ENVIRONMENT_COMMAND="PROD=true"
 else
     echo "prod flag not found"
     IMAGE_NAME="passatkrunnertest"
-    S3_BUCKET_NAME="gersteincodegentest"
+    S3_BUCKET_NAME="labcodegentest"
     ENVIRONMENT_COMMAND="TESTING=true"
 fi
 DOCKER_REPOSITORY_URL="public.ecr.aws/i5g0m1f6"
