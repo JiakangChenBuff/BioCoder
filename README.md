@@ -1,8 +1,5 @@
 # BioCoder
 
-<p align="center"><a href="https://arxiv.org/abs/2308.16458">[📄 Paper]</a>
-<a href="https://biocoder-benchmark.github.io">[🌐 Website]</a>
-
 BioCoder is a challenging bioinformatics code generation benchmark for examining the capabilities of state-of-the-art large language models (LLMs).
 
 
@@ -111,14 +108,3 @@ We provide our completed public dataset in this GitHub repository. It consists o
 * `python_public.json`: A JSON of the 50 Python functions that make up the Python part of the "public" dataset of the benchmark
 * `python_simlar.json`: A JSON of the 50 Python functions that make up the Python part of the "similar" dataset of the benchmark
 * `rosalind.json`: A JSON of the 253 Rosalind functions that make up the Rosalind part of the "public" dataset of the benchmark
-
-## Citation
-If you find our work useful in your research, please kindly consider cite:
-```
-@article{tang2023biocoder,
-  title={BioCoder: A Benchmark for Bioinformatics Code Generation with Contextual Pragmatic Knowledge},
-  author={Tang, Xiangru and Qian, Bill and Gao, Rick and Chen, Jiakang and Chen, Xinyun and Gerstein, Mark},
-  journal={arXiv preprint arXiv:2308.16458},
-  year={2023}
-}
-```
