@@ -9,8 +9,8 @@ import zipfile
 import shutil
 import requests
 
-s3url = "https://gersteincodegenprod.s3.amazonaws.com/output_logs"
-s3url2 = "https://gersteincodegenprod.s3.amazonaws.com/functions"
+s3url = "https://Lab.s3.amazonaws.com/output_logs"
+s3url2 = "https://Lab.s3.amazonaws.com/functions"
 
 def download(id):
     url = f"{s3url}/{id[0]}/{id[1]}/{id[2]}/{id}.txt"
