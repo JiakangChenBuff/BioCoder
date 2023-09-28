@@ -1,4 +1,4 @@
-package com.lilbillbiscuit;
+package com.User;
 
 import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
@@ -47,7 +47,7 @@ public class JSONTesting {
                 //value is neither object, nor array, so we print and this ends the recursion
                 String lastParameter = nextKey.substring(nextKey.lastIndexOf("-") + 1);
                 if (lastParameter.equals("filePath")) {
-                    String removePrefix = "/Users/billyqian/temprepos/";
+                    String removePrefix = "/Users/User/temprepos/";
                     String filePath = (String) value;
                     filePath = filePath.replace(removePrefix, "");
                     System.out.println(filePath);
